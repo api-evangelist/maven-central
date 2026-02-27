@@ -1,0 +1,77 @@
+name: Maven Central
+description: The central repository for Java and other JVM-based artifacts
+image: https://maven.apache.org/images/maven-logo-black-on-white.png
+url: https://central.sonatype.com/
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+tags:
+- Java
+- Maven
+- Artifacts
+- Repository
+- Package Management
+- JVM
+apis:
+- name: Maven Central Search API
+  description: REST API for searching and retrieving metadata about artifacts in Maven Central
+  image: https://maven.apache.org/images/maven-logo-black-on-white.png
+  humanURL: https://central.sonatype.org/search/
+  baseURL: https://search.maven.org/solrsearch
+  tags:
+  - Search
+  - Artifacts
+  - Metadata
+  properties:
+  - type: Documentation
+    url: https://central.sonatype.org/search/rest-api-guide/
+  - type: OpenAPI
+    url: https://search.maven.org/swagger-ui/
+  - type: Rate Limits
+    url: https://central.sonatype.org/search/rest-api-guide/#rate-limiting
+  contact:
+  - type: Support
+    url: https://central.sonatype.org/support/
+  - type: Email
+    url: mailto:central@sonatype.com
+- name: Maven Central Repository API
+  description: Direct access to Maven Central repository for downloading artifacts
+  humanURL: https://repo.maven.apache.org/maven2/
+  baseURL: https://repo.maven.apache.org/maven2/
+  tags:
+  - Repository
+  - Download
+  - Artifacts
+  properties:
+  - type: Documentation
+    url: https://maven.apache.org/repository/
+  - type: Mirrors
+    url: https://maven.apache.org/download.cgi#Mirrors
+- name: Central Portal API
+  description: API for publishing artifacts to Maven Central
+  humanURL: https://central.sonatype.com/
+  baseURL: https://central.sonatype.com/api/
+  tags:
+  - Publishing
+  - Upload
+  - Deployment
+  properties:
+  - type: Documentation
+    url: https://central.sonatype.org/publish/publish-portal-api/
+  - type: Authentication
+    url: https://central.sonatype.org/publish/generate-token/
+maintainers:
+- name: Sonatype
+  email: central@sonatype.com
+  url: https://www.sonatype.com/
+common:
+- type: Blog
+  url: https://blog.sonatype.com/
+- type: Status
+  url: https://status.maven.org/
+- type: Terms of Service
+  url: https://central.sonatype.org/publish/terms/
+- type: Getting Started
+  url: https://central.sonatype.org/publish/publish-guide/
+- type: GitHub
+  url: https://github.com/sonatype/
