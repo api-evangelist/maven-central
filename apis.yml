@@ -1,77 +1,70 @@
+aid: maven-central
 name: Maven Central
-description: The central repository for Java and other JVM-based artifacts
-image: https://maven.apache.org/images/maven-logo-black-on-white.png
-url: https://central.sonatype.com/
-created: '2024'
-modified: '2024'
-specificationVersion: '0.18'
+description: >-
+  Maven Central is the central repository for Java and other JVM-based artifacts,
+  operated by Sonatype. It provides a REST API for searching artifact metadata
+  and a publishing API for deploying open source libraries to the repository.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/apis.yml
 tags:
-- Java
-- Maven
-- Artifacts
-- Repository
-- Package Management
-- JVM
-apis:
-- name: Maven Central Search API
-  description: REST API for searching and retrieving metadata about artifacts in Maven Central
-  image: https://maven.apache.org/images/maven-logo-black-on-white.png
-  humanURL: https://central.sonatype.org/search/
-  baseURL: https://search.maven.org/solrsearch
-  tags:
-  - Search
+  - Java
+  - Maven
   - Artifacts
-  - Metadata
-  properties:
-  - type: Documentation
-    url: https://central.sonatype.org/search/rest-api-guide/
-  - type: OpenAPI
-    url: https://search.maven.org/swagger-ui/
-  - type: Rate Limits
-    url: https://central.sonatype.org/search/rest-api-guide/#rate-limiting
-  contact:
+  - Repository
+  - Package Management
+  - JVM
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: maven-central:maven-central-search-api
+    name: Maven Central Search API
+    description: >-
+      REST API for searching and retrieving metadata about artifacts in Maven
+      Central. Supports Solr-based queries for finding Java libraries, their
+      versions, and download statistics.
+    humanURL: https://central.sonatype.org/search/
+    baseURL: https://search.maven.org/solrsearch
+    tags:
+      - Search
+      - Artifacts
+      - Metadata
+    properties:
+      - type: Documentation
+        url: https://central.sonatype.org/search/rest-api-guide/
+      - type: Authentication
+        url: https://central.sonatype.org/publish/generate-token/
+  - aid: maven-central:central-portal-api
+    name: Central Portal Publishing API
+    description: >-
+      API for publishing artifacts to Maven Central through the Sonatype
+      Central Portal, supporting automated deployment pipelines.
+    humanURL: https://central.sonatype.com/
+    baseURL: https://central.sonatype.com/api/v1
+    tags:
+      - Publishing
+      - Upload
+      - Deployment
+    properties:
+      - type: Documentation
+        url: https://central.sonatype.org/publish/publish-portal-api/
+common:
+  - type: Portal
+    url: https://central.sonatype.com/
+  - type: Getting Started
+    url: https://central.sonatype.org/publish/publish-guide/
+  - type: Blog
+    url: https://blog.sonatype.com/
+  - type: Status
+    url: https://status.maven.org/
+  - type: Terms of Service
+    url: https://central.sonatype.org/publish/terms/
+  - type: GitHub Organization
+    url: https://github.com/sonatype
   - type: Support
     url: https://central.sonatype.org/support/
-  - type: Email
-    url: mailto:central@sonatype.com
-- name: Maven Central Repository API
-  description: Direct access to Maven Central repository for downloading artifacts
-  humanURL: https://repo.maven.apache.org/maven2/
-  baseURL: https://repo.maven.apache.org/maven2/
-  tags:
-  - Repository
-  - Download
-  - Artifacts
-  properties:
-  - type: Documentation
-    url: https://maven.apache.org/repository/
-  - type: Mirrors
-    url: https://maven.apache.org/download.cgi#Mirrors
-- name: Central Portal API
-  description: API for publishing artifacts to Maven Central
-  humanURL: https://central.sonatype.com/
-  baseURL: https://central.sonatype.com/api/
-  tags:
-  - Publishing
-  - Upload
-  - Deployment
-  properties:
-  - type: Documentation
-    url: https://central.sonatype.org/publish/publish-portal-api/
-  - type: Authentication
-    url: https://central.sonatype.org/publish/generate-token/
 maintainers:
-- name: Sonatype
-  email: central@sonatype.com
-  url: https://www.sonatype.com/
-common:
-- type: Blog
-  url: https://blog.sonatype.com/
-- type: Status
-  url: https://status.maven.org/
-- type: Terms of Service
-  url: https://central.sonatype.org/publish/terms/
-- type: Getting Started
-  url: https://central.sonatype.org/publish/publish-guide/
-- type: GitHub
-  url: https://github.com/sonatype/
+  - FN: Kin Lane
+    email: kin@apievangelist.com
