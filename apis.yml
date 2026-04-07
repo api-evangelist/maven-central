@@ -9,12 +9,12 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: >-
   https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/apis.yml
 tags:
-  - Java
-  - Maven
   - Artifacts
-  - Repository
-  - Package Management
+  - Java
   - JVM
+  - Maven
+  - Package Management
+  - Repository
 created: '2024-01-01'
 modified: '2026-03-16'
 specificationVersion: '0.19'
@@ -28,9 +28,9 @@ apis:
     humanURL: https://central.sonatype.org/search/
     baseURL: https://search.maven.org/solrsearch
     tags:
-      - Search
       - Artifacts
       - Metadata
+      - Search
     properties:
       - type: Documentation
         url: https://central.sonatype.org/search/rest-api-guide/
@@ -44,9 +44,9 @@ apis:
     humanURL: https://central.sonatype.com/
     baseURL: https://central.sonatype.com/api/v1
     tags:
+      - Deployment
       - Publishing
       - Upload
-      - Deployment
     properties:
       - type: Documentation
         url: https://central.sonatype.org/publish/publish-portal-api/
