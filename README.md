@@ -1,75 +1,66 @@
 # Maven Central (maven-central)
-The central repository for Java and other JVM-based artifacts
 
-**URL:** [Visit APIs.json URL](https://central.sonatype.com/)
+Maven Central is the central repository for Java and other JVM-based artifacts, operated by Sonatype. It provides a REST API for searching artifact metadata and a publishing API for deploying open source libraries to the repository.
 
-## Tags:
+**URL:** [https://central.sonatype.com/](https://central.sonatype.com/)
 
- - Java, Maven, Artifacts, Repository, Package Management, JVM
+## Tags
+
+- Artifacts, Java, JVM, Maven, Package Management, Repository
 
 ## Timestamps
 
-- **Created:** 2024 
-- **Modified:** 2024 
+- **Created:** 2024-01-01
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### Maven Central Search API
-REST API for searching and retrieving metadata about artifacts in Maven Central
+
+REST API for searching and retrieving metadata about artifacts in Maven Central. Supports Solr-based queries for finding Java libraries, their versions, and download statistics.
 
 **Human URL:** [https://central.sonatype.org/search/](https://central.sonatype.org/search/)
 
+**Base URL:** `https://search.maven.org/solrsearch`
 
-#### Tags:
+#### Tags
 
- - Search, Artifacts, Metadata
+- Artifacts, Metadata, Search
 
 #### Properties
 
 - [Documentation](https://central.sonatype.org/search/rest-api-guide/)
-- [OpenAPI](https://search.maven.org/swagger-ui/)
-- [Rate Limits](https://central.sonatype.org/search/rest-api-guide/#rate-limiting)
+- [Authentication](https://central.sonatype.org/publish/generate-token/)
+- [OpenAPI](openapi/maven-central-search-openapi.yml)
 
-### Maven Central Repository API
-Direct access to Maven Central repository for downloading artifacts
+### Central Portal Publishing API
 
-**Human URL:** [https://repo.maven.apache.org/maven2/](https://repo.maven.apache.org/maven2/)
-
-
-#### Tags:
-
- - Repository, Download, Artifacts
-
-#### Properties
-
-- [Documentation](https://maven.apache.org/repository/)
-- [Mirrors](https://maven.apache.org/download.cgi#Mirrors)
-
-### Central Portal API
-API for publishing artifacts to Maven Central
+API for publishing artifacts to Maven Central through the Sonatype Central Portal, supporting automated deployment pipelines.
 
 **Human URL:** [https://central.sonatype.com/](https://central.sonatype.com/)
 
+**Base URL:** `https://central.sonatype.com/api/v1`
 
-#### Tags:
+#### Tags
 
- - Publishing, Upload, Deployment
+- Deployment, Publishing, Upload
 
 #### Properties
 
 - [Documentation](https://central.sonatype.org/publish/publish-portal-api/)
-- [Authentication](https://central.sonatype.org/publish/generate-token/)
+- [OpenAPI](openapi/maven-central-portal-openapi.yml)
 
 ## Common Properties
 
+- [Portal](https://central.sonatype.com/)
+- [Getting Started](https://central.sonatype.org/publish/publish-guide/)
 - [Blog](https://blog.sonatype.com/)
 - [Status](https://status.maven.org/)
 - [Terms of Service](https://central.sonatype.org/publish/terms/)
-- [Getting Started](https://central.sonatype.org/publish/publish-guide/)
-- [GitHub](https://github.com/sonatype/)
+- [GitHub Organization](https://github.com/sonatype)
+- [Support](https://central.sonatype.org/support/)
 
 ## Maintainers
 
-**FN:** Sonatype
-
-**Email:** central@sonatype.com
+- **FN:** Kin Lane
+- **Email:** kin@apievangelist.com

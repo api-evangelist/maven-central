@@ -16,7 +16,7 @@ tags:
   - Package Management
   - Repository
 created: '2024-01-01'
-modified: '2026-03-16'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: maven-central:maven-central-search-api
@@ -36,6 +36,9 @@ apis:
         url: https://central.sonatype.org/search/rest-api-guide/
       - type: Authentication
         url: https://central.sonatype.org/publish/generate-token/
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/openapi/maven-central-search-openapi.yml
   - aid: maven-central:central-portal-api
     name: Central Portal Publishing API
     description: >-
@@ -50,6 +53,9 @@ apis:
     properties:
       - type: Documentation
         url: https://central.sonatype.org/publish/publish-portal-api/
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/openapi/maven-central-portal-openapi.yml
 common:
   - type: Portal
     url: https://central.sonatype.com/
