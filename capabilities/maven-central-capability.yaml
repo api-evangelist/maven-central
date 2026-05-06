@@ -1,0 +1,318 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Central Portal Publishing API
+  description: REST API for uploading, validating, publishing, and dropping deployment bundles on the Sonatype Central Portal.
+    Replaces the legacy OSSRH staging workflow for releasing open source libraries to Maven Central.
+  tags:
+  - Maven
+  - Central
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: maven-central
+    baseUri: https://central.sonatype.com/api/v1/publisher
+    description: Sonatype Central Portal Publishing API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{MAVEN_CENTRAL_TOKEN}}'
+    resources:
+    - name: upload
+      path: /upload
+      operations:
+      - name: uploadbundle
+        method: POST
+        description: Upload a deployment bundle
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Human-readable deployment name.
+        - name: publishingType
+          in: query
+          type: string
+          description: Whether to auto-publish on validation success.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: status
+      path: /status
+      operations:
+      - name: getdeploymentstatus
+        method: POST
+        description: Get deployment status
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: true
+          description: Deployment identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: deployment-deploymentid
+      path: /deployment/{deploymentId}
+      operations:
+      - name: publishdeployment
+        method: POST
+        description: Publish a deployment
+        inputParameters:
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: dropdeployment
+        method: DELETE
+        description: Drop a deployment
+        inputParameters:
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: deployment-deploymentid-download-relativepath
+      path: /deployment/{deploymentId}/download/{relativePath}
+      operations:
+      - name: downloaddeploymentfile
+        method: GET
+        description: Download from a specific deployment
+        inputParameters:
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+        - name: relativePath
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: deployments-download-relativepath
+      path: /deployments/download/{relativePath}
+      operations:
+      - name: downloadvalidatedfile
+        method: GET
+        description: Download from any validated deployment
+        inputParameters:
+        - name: relativePath
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: maven-central-rest
+    description: REST adapter for Sonatype Central Portal Publishing API.
+    resources:
+    - path: /upload
+      name: uploadbundle
+      operations:
+      - method: POST
+        name: uploadbundle
+        description: Upload a deployment bundle
+        call: maven-central.uploadbundle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /status
+      name: getdeploymentstatus
+      operations:
+      - method: POST
+        name: getdeploymentstatus
+        description: Get deployment status
+        call: maven-central.getdeploymentstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /deployment/{deploymentId}
+      name: publishdeployment
+      operations:
+      - method: POST
+        name: publishdeployment
+        description: Publish a deployment
+        call: maven-central.publishdeployment
+        with:
+          deploymentId: rest.deploymentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /deployment/{deploymentId}
+      name: dropdeployment
+      operations:
+      - method: DELETE
+        name: dropdeployment
+        description: Drop a deployment
+        call: maven-central.dropdeployment
+        with:
+          deploymentId: rest.deploymentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /deployment/{deploymentId}/download/{relativePath}
+      name: downloaddeploymentfile
+      operations:
+      - method: GET
+        name: downloaddeploymentfile
+        description: Download from a specific deployment
+        call: maven-central.downloaddeploymentfile
+        with:
+          deploymentId: rest.deploymentId
+          relativePath: rest.relativePath
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /deployments/download/{relativePath}
+      name: downloadvalidatedfile
+      operations:
+      - method: GET
+        name: downloadvalidatedfile
+        description: Download from any validated deployment
+        call: maven-central.downloadvalidatedfile
+        with:
+          relativePath: rest.relativePath
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: maven-central-mcp
+    transport: http
+    description: MCP adapter for Sonatype Central Portal Publishing API for AI agent use.
+    tools:
+    - name: uploadbundle
+      description: Upload a deployment bundle
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: maven-central.uploadbundle
+      with:
+        name: tools.name
+        publishingType: tools.publishingType
+      inputParameters:
+      - name: name
+        type: string
+        description: Human-readable deployment name.
+      - name: publishingType
+        type: string
+        description: Whether to auto-publish on validation success.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdeploymentstatus
+      description: Get deployment status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: maven-central.getdeploymentstatus
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: Deployment identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: publishdeployment
+      description: Publish a deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: maven-central.publishdeployment
+      with:
+        deploymentId: tools.deploymentId
+      inputParameters:
+      - name: deploymentId
+        type: string
+        description: deploymentId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dropdeployment
+      description: Drop a deployment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: maven-central.dropdeployment
+      with:
+        deploymentId: tools.deploymentId
+      inputParameters:
+      - name: deploymentId
+        type: string
+        description: deploymentId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloaddeploymentfile
+      description: Download from a specific deployment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: maven-central.downloaddeploymentfile
+      with:
+        deploymentId: tools.deploymentId
+        relativePath: tools.relativePath
+      inputParameters:
+      - name: deploymentId
+        type: string
+        description: deploymentId
+        required: true
+      - name: relativePath
+        type: string
+        description: relativePath
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloadvalidatedfile
+      description: Download from any validated deployment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: maven-central.downloadvalidatedfile
+      with:
+        relativePath: tools.relativePath
+      inputParameters:
+      - name: relativePath
+        type: string
+        description: relativePath
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    MAVEN_CENTRAL_TOKEN: MAVEN_CENTRAL_TOKEN
