@@ -71,6 +71,10 @@ common:
     url: https://github.com/sonatype
   - type: Support
     url: https://central.sonatype.org/support/
+  - type: Integrations
+    url: https://central.sonatype.com/partners
+integrations:
+  - name: Sonatype
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
