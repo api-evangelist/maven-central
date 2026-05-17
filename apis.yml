@@ -59,15 +59,15 @@ apis:
 common:
   - type: Portal
     url: https://central.sonatype.com/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://central.sonatype.org/publish/publish-guide/
   - type: Blog
     url: https://blog.sonatype.com/
-  - type: Status
+  - type: StatusPage
     url: https://status.maven.org/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://central.sonatype.org/publish/terms/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/sonatype
   - type: Support
     url: https://central.sonatype.org/support/
