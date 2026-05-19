@@ -1,0 +1,101 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Maven Central Search API — Search
+  description: 'Maven Central Search API — Search. 1 operations. Lead operation: Search Maven Central. Self-contained Naftiko
+    capability covering one Maven Central business surface.'
+  tags:
+  - Maven Central
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAVEN_CENTRAL_API_KEY: MAVEN_CENTRAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: search-search
+    baseUri: https://search.maven.org/solrsearch
+    description: Maven Central Search API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: select
+      path: /select
+      operations:
+      - name: searchartifacts
+        method: GET
+        description: Search Maven Central
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Solr query string.
+          required: true
+        - name: rows
+          in: query
+          type: integer
+          description: Maximum number of results to return.
+        - name: start
+          in: query
+          type: integer
+          description: Result offset for pagination.
+        - name: wt
+          in: query
+          type: string
+          description: Response format.
+        - name: core
+          in: query
+          type: string
+          description: Specific Solr core to search (for example, `gav` to list versions).
+  exposes:
+  - type: rest
+    namespace: search-search-rest
+    port: 8080
+    description: REST adapter for Maven Central Search API — Search. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/select
+      name: select
+      description: REST surface for select.
+      operations:
+      - method: GET
+        name: searchartifacts
+        description: Search Maven Central
+        call: search-search.searchartifacts
+        with:
+          q: rest.q
+          rows: rest.rows
+          start: rest.start
+          wt: rest.wt
+          core: rest.core
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: search-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Maven Central Search API — Search. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: search-maven-central
+      description: Search Maven Central
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: search-search.searchartifacts
+      with:
+        q: tools.q
+        rows: tools.rows
+        start: tools.start
+        wt: tools.wt
+        core: tools.core
+      outputParameters:
+      - type: object
+        mapping: $.

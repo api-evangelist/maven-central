@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Maven Central Search API — Download
+  description: 'Maven Central Search API — Download. 1 operations. Lead operation: Download artifact content. Self-contained
+    Naftiko capability covering one Maven Central business surface.'
+  tags:
+  - Maven Central
+  - Download
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAVEN_CENTRAL_API_KEY: MAVEN_CENTRAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: search-download
+    baseUri: https://search.maven.org/solrsearch
+    description: Maven Central Search API — Download business capability. Self-contained, no shared references.
+    resources:
+    - name: remotecontent
+      path: /remotecontent
+      operations:
+      - name: downloadartifact
+        method: GET
+        description: Download artifact content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filepath
+          in: query
+          type: string
+          description: Path to the artifact in Maven Central.
+          required: true
+  exposes:
+  - type: rest
+    namespace: search-download-rest
+    port: 8080
+    description: REST adapter for Maven Central Search API — Download. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/remotecontent
+      name: remotecontent
+      description: REST surface for remotecontent.
+      operations:
+      - method: GET
+        name: downloadartifact
+        description: Download artifact content
+        call: search-download.downloadartifact
+        with:
+          filepath: rest.filepath
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: search-download-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Maven Central Search API — Download. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: download-artifact-content
+      description: Download artifact content
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: search-download.downloadartifact
+      with:
+        filepath: tools.filepath
+      outputParameters:
+      - type: object
+        mapping: $.
