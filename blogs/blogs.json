@@ -2,13 +2,20 @@
   "repo": "maven-central",
   "feeds": [
     {
-      "source": "https://blog.sonatype.com/",
+      "source": "https://blog.sonatype.com/atom.xml",
       "feed_url": "https://blog.sonatype.com/atom.xml",
-      "title": "2024 Sonatype Blog",
+      "title": "",
       "saved": 0,
-      "last_error": "http_404"
+      "method": "feed"
+    },
+    {
+      "source": "https://central.sonatype.org/publish/publish-guide/",
+      "feed_url": "https://central.sonatype.org/publish/publish-guide/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 11,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 21,
+  "fetched": "2026-06-01T23:35:02Z"
 }
