@@ -4,7 +4,7 @@ description: >-
   Maven Central is the central repository for Java and other JVM-based artifacts, operated by Sonatype. It provides a
   REST API for searching artifact metadata and a publishing API for deploying open source libraries to the repository.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/apis.yml
 tags:
   - Artifacts
