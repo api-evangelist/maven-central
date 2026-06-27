@@ -2,11 +2,11 @@
   "repo": "maven-central",
   "feeds": [
     {
-      "source": "https://www.sonatype.com/blog/",
+      "source": "https://www.sonatype.com/blog/rss.xml",
       "feed_url": "https://www.sonatype.com/blog/rss.xml",
       "title": "",
-      "saved": 3,
-      "method": "discovered"
+      "saved": 4,
+      "method": "feed"
     },
     {
       "source": "https://central.sonatype.org/publish/publish-guide/",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 28,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 35,
+  "fetched": "2026-06-27T12:03:07Z"
 }
