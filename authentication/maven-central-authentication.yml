@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/maven-central-portal-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: Authorization header `Bearer <base64(username:password)>` using a user token
+    generated from the Central Portal account settings.
+  sources:
+  - openapi/maven-central-portal-openapi.yml

@@ -54,6 +54,10 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/openapi/maven-central-portal-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/maven-central-domain-security.yml
+  - type: Authentication
+    url: authentication/maven-central-authentication.yml
   - type: Portal
     url: https://central.sonatype.com/
   - type: GettingStarted
