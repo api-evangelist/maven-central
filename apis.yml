@@ -54,6 +54,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/openapi/maven-central-portal-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/maven-central-agentic-access.yml
   - type: DomainSecurity
     url: security/maven-central-domain-security.yml
   - type: Authentication
