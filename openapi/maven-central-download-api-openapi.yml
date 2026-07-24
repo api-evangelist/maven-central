@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: Sonatype Central Portal Publishing Deployment Download API
+  summary: Publish artifacts to Maven Central via the Sonatype Central Portal.
+  description: REST API for uploading, validating, publishing, and dropping deployment bundles on the Sonatype Central Portal. Replaces the legacy OSSRH staging workflow for releasing open source libraries to Maven Central.
+  version: '1.0'
+  contact:
+    name: Sonatype Central
+    url: https://central.sonatype.org/publish/publish-portal-api/
+  license:
+    name: Documentation Terms
+    url: https://central.sonatype.org/publish/terms/
+servers:
+- url: https://central.sonatype.com/api/v1/publisher
+  description: Sonatype Central Portal publisher API
+security:
+- BearerAuth: []
+tags:
+- name: Download
+paths:
+  /remotecontent:
+    get:
+      summary: Download artifact content
+      description: Download a file from the Central Repository by relative path.
+      operationId: downloadArtifact
+      tags:
+      - Download
+      parameters:
+      - name: filepath
+        in: query
+        required: true
+        description: Path to the artifact in Maven Central.
+        schema:
+          type: string
+        example: com/google/inject/guice/5.1.0/guice-5.1.0.jar
+      responses:
+        '200':
+          description: Artifact bytes.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Artifact not found.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header `Bearer <base64(username:password)>` using a user token generated from the Central Portal account settings.
