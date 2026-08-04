@@ -1,0 +1,204 @@
+openapi: 3.0.3
+info:
+  title: Sonatype Central Portal Publishing API
+  summary: Publish artifacts to Maven Central via the Sonatype Central Portal.
+  description: >-
+    REST API for uploading, validating, publishing, and dropping deployment
+    bundles on the Sonatype Central Portal. Replaces the legacy OSSRH staging
+    workflow for releasing open source libraries to Maven Central.
+  version: '1.0'
+  contact:
+    name: Sonatype Central
+    url: https://central.sonatype.org/publish/publish-portal-api/
+  license:
+    name: Documentation Terms
+    url: https://central.sonatype.org/publish/terms/
+servers:
+  - url: https://central.sonatype.com/api/v1/publisher
+    description: Sonatype Central Portal publisher API
+security:
+  - BearerAuth: []
+paths:
+  /upload:
+    post:
+      summary: Upload a deployment bundle
+      description: >-
+        Upload a deployment bundle archive containing the artifacts and
+        signatures to be published to Maven Central. Returns a deployment
+        identifier used in subsequent calls.
+      operationId: uploadBundle
+      tags:
+        - Deployment
+      parameters:
+        - name: name
+          in: query
+          required: false
+          description: Human-readable deployment name.
+          schema:
+            type: string
+        - name: publishingType
+          in: query
+          required: false
+          description: Whether to auto-publish on validation success.
+          schema:
+            type: string
+            enum:
+              - AUTOMATIC
+              - USER_MANAGED
+            default: USER_MANAGED
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                bundle:
+                  type: string
+                  format: binary
+                  description: Deployment bundle archive.
+              required:
+                - bundle
+      responses:
+        '201':
+          description: Deployment created.
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: Deployment identifier (UUID).
+  /status:
+    post:
+      summary: Get deployment status
+      description: Return the current state of a deployment.
+      operationId: getDeploymentStatus
+      tags:
+        - Deployment
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: Deployment identifier.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Deployment status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentStatus'
+  /deployment/{deploymentId}:
+    post:
+      summary: Publish a deployment
+      description: Publish a previously validated deployment to Maven Central.
+      operationId: publishDeployment
+      tags:
+        - Deployment
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Publish accepted.
+    delete:
+      summary: Drop a deployment
+      description: Discard a deployment that has not been published.
+      operationId: dropDeployment
+      tags:
+        - Deployment
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Deployment dropped.
+  /deployment/{deploymentId}/download/{relativePath}:
+    get:
+      summary: Download from a specific deployment
+      operationId: downloadDeploymentFile
+      tags:
+        - Deployment
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: relativePath
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File content.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /deployments/download/{relativePath}:
+    get:
+      summary: Download from any validated deployment
+      operationId: downloadValidatedFile
+      tags:
+        - Deployment
+      parameters:
+        - name: relativePath
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File content.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Authorization header `Bearer <base64(username:password)>` using a user
+        token generated from the Central Portal account settings.
+  schemas:
+    DeploymentStatus:
+      type: object
+      properties:
+        deploymentId:
+          type: string
+          format: uuid
+        deploymentName:
+          type: string
+        deploymentState:
+          type: string
+          enum:
+            - PENDING
+            - VALIDATING
+            - VALIDATED
+            - PUBLISHING
+            - PUBLISHED
+            - FAILED
+        purls:
+          type: array
+          items:
+            type: string
+        errors:
+          type: array
+          items:
+            type: string
