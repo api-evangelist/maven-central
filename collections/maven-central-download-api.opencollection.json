@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Central Portal Publishing Deployment Download API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Download",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download artifact content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://central.sonatype.com/api/v1/publisher/remotecontent",
+            "params": [
+              {
+                "name": "filepath",
+                "value": "com/google/inject/guice/5.1.0/guice-5.1.0.jar",
+                "type": "query",
+                "description": "Path to the artifact in Maven Central."
+              }
+            ]
+          },
+          "docs": "Download a file from the Central Repository by relative path."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Central Portal Publishing Deployment API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a deployment bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://central.sonatype.com/api/v1/publisher/upload",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable deployment name."
+              },
+              {
+                "name": "publishingType",
+                "value": "",
+                "type": "query",
+                "description": "Whether to auto-publish on validation success."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "bundle",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a deployment bundle archive containing the artifacts and signatures to be published to Maven Central. Returns a deployment identifier used in subsequent calls."
+        },
+        {
+          "info": {
+            "name": "Get deployment status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://central.sonatype.com/api/v1/publisher/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment identifier."
+              }
+            ]
+          },
+          "docs": "Return the current state of a deployment."
+        },
+        {
+          "info": {
+            "name": "Publish a deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://central.sonatype.com/api/v1/publisher/deployment/:deploymentId",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Publish a previously validated deployment to Maven Central."
+        },
+        {
+          "info": {
+            "name": "Drop a deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://central.sonatype.com/api/v1/publisher/deployment/:deploymentId",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Discard a deployment that has not been published."
+        },
+        {
+          "info": {
+            "name": "Download from a specific deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://central.sonatype.com/api/v1/publisher/deployment/:deploymentId/download/:relativePath",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "relativePath",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download from a specific deployment"
+        },
+        {
+          "info": {
+            "name": "Download from any validated deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://central.sonatype.com/api/v1/publisher/deployments/download/:relativePath",
+            "params": [
+              {
+                "name": "relativePath",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download from any validated deployment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

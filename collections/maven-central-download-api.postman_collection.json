@@ -1,0 +1,175 @@
+{
+  "item": [
+    {
+      "id": "3729a5b6-a7e1-48fe-8aa7-0c5637b20486",
+      "name": "Download",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "964f4347-f3f5-4d82-87e9-4f61ada21abf",
+          "name": "Download artifact content",
+          "request": {
+            "name": "Download artifact content",
+            "description": {
+              "content": "Download a file from the Central Repository by relative path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "remotecontent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filepath",
+                  "value": "<string>",
+                  "description": "(Required) Path to the artifact in Maven Central."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54779853-1e0e-4ce5-9764-904b379839cf",
+              "name": "Artifact bytes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "remotecontent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filepath",
+                      "value": "com/google/inject/guice/5.1.0/guice-5.1.0.jar"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "425b0d51-6cfd-4b83-97b6-60a694b492d7",
+              "name": "Artifact not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "remotecontent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filepath",
+                      "value": "com/google/inject/guice/5.1.0/guice-5.1.0.jar"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://central.sonatype.com/api/v1/publisher",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "13d1de95-149e-45e0-9748-0bdb7e7dab76",
+    "name": "Sonatype Central Portal Publishing Deployment Download API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for uploading, validating, publishing, and dropping deployment bundles on the Sonatype Central Portal. Replaces the legacy OSSRH staging workflow for releasing open source libraries to Maven Central.\n\nContact Support:\n Name: Sonatype Central",
+      "type": "text/plain"
+    }
+  }
+}

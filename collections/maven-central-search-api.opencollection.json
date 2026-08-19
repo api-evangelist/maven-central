@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Central Portal Publishing Deployment Search API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Maven Central",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://central.sonatype.com/api/v1/publisher/select",
+            "params": [
+              {
+                "name": "q",
+                "value": "g:com.google.inject+AND+a:guice",
+                "type": "query",
+                "description": "Solr query string."
+              },
+              {
+                "name": "rows",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Result offset for pagination."
+              },
+              {
+                "name": "wt",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              },
+              {
+                "name": "core",
+                "value": "",
+                "type": "query",
+                "description": "Specific Solr core to search (for example, `gav` to list versions)."
+              }
+            ]
+          },
+          "docs": "Execute a Solr query against Maven Central. Use the `q` parameter with Solr field syntax to filter by groupId (`g:`), artifactId (`a:`), version (`v:`), classname (`c:`), fully-qualified classname (`fc:`), SHA-1 checksum (`1:`), or tags (`tags:`)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
