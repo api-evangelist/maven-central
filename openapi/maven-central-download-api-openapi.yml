@@ -1,20 +1,18 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Sonatype Central Portal Publishing Deployment Download API
-  summary: Publish artifacts to Maven Central via the Sonatype Central Portal.
-  description: REST API for uploading, validating, publishing, and dropping deployment bundles on the Sonatype Central Portal. Replaces the legacy OSSRH staging workflow for releasing open source libraries to Maven Central.
+  title: Maven Central Search Download API
+  summary: Search artifact metadata in Maven Central Repository.
+  description: REST API for searching and retrieving metadata about artifacts in Maven Central. Backed by Solr, the API supports queries for groupId, artifactId, classnames, SHA-1 checksums, tags, and other attributes used to discover Java and other JVM-based libraries.
   version: '1.0'
   contact:
     name: Sonatype Central
-    url: https://central.sonatype.org/publish/publish-portal-api/
+    url: https://central.sonatype.org/search/rest-api-guide/
   license:
     name: Documentation Terms
     url: https://central.sonatype.org/publish/terms/
 servers:
-- url: https://central.sonatype.com/api/v1/publisher
-  description: Sonatype Central Portal publisher API
-security:
-- BearerAuth: []
+- url: https://search.maven.org/solrsearch
+  description: Maven Central Solr search service
 tags:
 - name: Download
 paths:
@@ -43,9 +41,3 @@ paths:
                 format: binary
         '404':
           description: Artifact not found.
-components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: Authorization header `Bearer <base64(username:password)>` using a user token generated from the Central Portal account settings.
