@@ -34,6 +34,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/maven-cent
 url: https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/apis.yml
 tags:
   - Artifacts
+  - Developer Tools
   - Java
   - JVM
   - Maven
