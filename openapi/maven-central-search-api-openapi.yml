@@ -70,31 +70,6 @@ paths:
                 $ref: '#/components/schemas/SearchResponse'
 components:
   schemas:
-    SearchResponse:
-      type: object
-      properties:
-        responseHeader:
-          type: object
-          properties:
-            status:
-              type: integer
-            QTime:
-              type: integer
-            params:
-              type: object
-              additionalProperties:
-                type: string
-        response:
-          type: object
-          properties:
-            numFound:
-              type: integer
-            start:
-              type: integer
-            docs:
-              type: array
-              items:
-                $ref: '#/components/schemas/ArtifactDoc'
     ArtifactDoc:
       type: object
       properties:
@@ -129,3 +104,28 @@ components:
           type: array
           items:
             type: string
+    SearchResponse:
+      type: object
+      properties:
+        responseHeader:
+          type: object
+          properties:
+            status:
+              type: integer
+            QTime:
+              type: integer
+            params:
+              type: object
+              additionalProperties:
+                type: string
+        response:
+          type: object
+          properties:
+            numFound:
+              type: integer
+            start:
+              type: integer
+            docs:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArtifactDoc'
