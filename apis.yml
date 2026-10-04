@@ -95,6 +95,9 @@ apis:
   - type: Documentation
     url: https://central.sonatype.org/publish/publish-portal-api/
 common:
+  - type: CapabilityMap
+    url: capabilities/maven-central-capability-edges.yml
+    name: Maven Central Business Capability Map
   - type: AgenticAccess
     url: agentic-access/maven-central-agentic-access.yml
   - type: DomainSecurity

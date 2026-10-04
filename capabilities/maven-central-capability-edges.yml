@@ -1,0 +1,26 @@
+slug: maven-central
+provider: Maven Central
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Deployment
+  spec_file: maven-central-deployment-api-openapi.yml
+  capability_id: BC-4210.30
+  capability_id_l1: BC-4210
+  capability_name: Release Engineering Management
+  confidence: 0.75
+  evidence: REST API for uploading, validating, publishing, and dropping deployment bundles ... for releasing
+    open source libraries to Maven Central
+  reason: Operations upload a build artefact bundle, check its validation status, then publish or drop
+    it — the release/publication step of software release engineering. Some ambiguity between Release
+    Engineering and CI artefact production, so confidence is moderate.
