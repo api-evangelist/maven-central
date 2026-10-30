@@ -1,4 +1,4 @@
-# Maven Central (maven-central)
+# Maven Central
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,85 +66,88 @@
 
 Maven Central is the central repository for Java and other JVM-based artifacts, operated by Sonatype. It provides a REST API for searching artifact metadata and a publishing API for deploying open source libraries to the repository.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/apis.yml)
+**Areas:** Artifacts · Developer Tools · Java · JVM · Maven · Package Management · Repository
 
-## Scope
+## Maven Central on APIs.io
 
-- **Type:** Index
+Everything profiled for Maven Central is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/maven-central/](https://apis.io/providers/maven-central/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Artifacts
-- Java
-- JVM
-- Maven
-- Package Management
-- Repository
+- [Maven Central Deployment API](https://apis.io/apis/maven-central/maven-central-deployment-api/) — The Deployment API from Maven Central — 5 operation(s) for deployment.
+- [Maven Central Download API](https://apis.io/apis/maven-central/maven-central-download-api/) — The Download API from Maven Central — 1 operation(s) for download.
+- [Maven Central Search API](https://apis.io/apis/maven-central/maven-central-search-api/) — The Search API from Maven Central — 1 operation(s) for search.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Maven Central Search API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-REST API for searching and retrieving metadata about artifacts in Maven Central. Supports Solr-based queries for finding Java libraries, their versions, and download statistics.
+- [Maven Central Agentic Access](https://apis.io/agentic-access/maven-central/maven-central-agentic-access/)
 
-- **Human URL:** [https://central.sonatype.org/search/](https://central.sonatype.org/search/)
-- **Base URL:** `https://search.maven.org/solrsearch`
+#### Collections (5)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Artifacts
-- Metadata
-- Search
+- [Sonatype Central Portal Publishing Deployment API](https://apis.io/collections/maven-central/open-maven-central-deployment-api/)
+- [Sonatype Central Portal Publishing Deployment Download API](https://apis.io/collections/maven-central/open-maven-central-download-api/)
+- [Sonatype Central Portal Publishing API](https://apis.io/collections/maven-central/open-maven-central-portal/)
+- [Maven Central Search API](https://apis.io/collections/maven-central/open-maven-central-search/)
+- [Sonatype Central Portal Publishing Deployment Search API](https://apis.io/collections/maven-central/open-maven-central-search-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://central.sonatype.org/search/rest-api-guide/)
-- [Authentication](https://central.sonatype.org/publish/generate-token/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/openapi/maven-central-search-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/maven-central-portal.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/maven-central-portal.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/maven-central-search.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/maven-central-search.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Central Portal Publishing API
+- [Maven Central Authentication](https://apis.io/security/maven-central/maven-central-authentication/)
+- [Maven Central Domain Security](https://apis.io/security/maven-central/maven-central-domain-security/)
 
-API for publishing artifacts to Maven Central through the Sonatype Central Portal, supporting automated deployment pipelines.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://central.sonatype.com/](https://central.sonatype.com/)
-- **Base URL:** `https://central.sonatype.com/api/v1`
+Published plans, tiers and prices.
 
-#### Tags
+- [Maven Central Plans Pricing](https://apis.io/plans/maven-central/maven-central-plans-pricing/)
 
-- Deployment
-- Publishing
-- Upload
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://central.sonatype.org/publish/publish-portal-api/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/maven-central/refs/heads/main/openapi/maven-central-portal-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/maven-central-portal.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/maven-central-portal.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/maven-central-search.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/maven-central-search.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Maven Central Rate Limits](https://apis.io/rate-limits/maven-central/maven-central-rate-limits/)
 
-## Common Properties
+#### FinOps (1)
 
-- [Portal](https://central.sonatype.com/)
-- [Getting Started](https://central.sonatype.org/publish/publish-guide/)
-- [Blog](https://blog.sonatype.com/)
-- [Status Page](https://status.maven.org/)
-- [Terms of Service](https://central.sonatype.org/publish/terms/)
-- [GitHub Organization](https://github.com/sonatype)
+What the API costs to run, by operation.
+
+- [Maven Central Finops](https://apis.io/finops/maven-central/maven-central-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Getting started](https://central.sonatype.org/publish/publish-guide/)
 - [Support](https://central.sonatype.org/support/)
-- [Integrations](https://central.sonatype.com/partners)
+- [Blog](https://blog.sonatype.com/)
+- [Terms of service](https://central.sonatype.org/publish/terms/)
+- [GitHub](https://github.com/sonatype)
+- [Status](https://status.maven.org/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Maven Central: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/maven-central/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
